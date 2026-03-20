@@ -144,7 +144,11 @@ class GenericLLMProvider:
             _check_pkg("langchain_ollama")
             from langchain_ollama import ChatOllama
 
-            llm = ChatOllama(base_url=os.environ["OLLAMA_BASE_URL"], **kwargs)
+            llm = ChatOllama(
+                base_url=os.environ["OLLAMA_BASE_URL"],
+                client_kwargs={"timeout": 3600.0},
+                **kwargs
+            )
         elif provider == "together":
             _check_pkg("langchain_together")
             from langchain_together import ChatTogether
