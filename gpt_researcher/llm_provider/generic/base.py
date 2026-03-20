@@ -148,6 +148,7 @@ class GenericLLMProvider:
             llm = ChatOllama(
                 base_url=os.environ["OLLAMA_BASE_URL"],
                 reasoning=False,
+                num_ctx=16384,
                 client_kwargs={"timeout": httpx.Timeout(connect=30.0, read=600.0, write=30.0, pool=30.0)},
                 **kwargs
             )
